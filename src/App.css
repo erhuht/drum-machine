@@ -1,15 +1,52 @@
+:root {
+  background-color: teal;
+}
+
 .App {
   text-align: center;
 }
 
+.square {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 25%;
+  margin: 2px;
+  border: none;
+}
+
+.square:focus {
+  outline: none;
+  filter: brightness(110%);
+}
+
+.Grid {
+  display: inline-block;
+  background-color: black;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 20vh;
+}
+
+.Play {
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 1.25rem;
+  display: block;
+  margin: auto;
+  margin-top: 1rem;
+  padding: 0.5em;
+}
+
+
 .on {
-  color: red;
+  background-color: red;
 }
 
 .off {
-  color: blue;
+  background-color: grey;
 }
 
 .playing {
-  color: green;
+  background-color: white;
 }

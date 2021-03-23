@@ -5,13 +5,19 @@ function Square(props) {
   let status = "off";
   if (props.playing) {
     status = "playing";
-    if (props.state) { props.audio.play(); }
+    if (props.state) {
+      if (props.audio.paused) {
+        props.audio.play();
+      } else {
+        props.audio.currentTime = 0;
+      }
+    }
   } else if (props.state) {
     status = "on";
   }
 
   return (
-    <button onClick={props.onClick} className={status}>Button</button>
+    <button onClick={props.onClick} className={status + " square"} />
   )
 }
 
@@ -50,7 +56,7 @@ class Grid extends React.Component {
     }
 
     return (
-      <div>{instruments}</div>
+      <div className="Grid">{instruments}</div>
     )
   }
 }
@@ -77,7 +83,7 @@ class App extends React.Component {
     } else {
       this.timerId = setInterval(
         () => this.tick(),
-        500
+        100
       )
       this.setState({playing: true});
     }
@@ -87,7 +93,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Grid playingSquares={this.state.playingSquares} playing={this.state.playing}/>
-        <button onClick={() => this.handlePlay()}>Play</button>
+        <button className="Play" onClick={() => this.handlePlay()}>Play</button>
       </div>
     );
   }

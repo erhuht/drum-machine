@@ -14,7 +14,7 @@
   border: none;
 }
 
-.square:focus {
+:focus {
   outline: none;
 }
 
@@ -26,15 +26,35 @@
   margin-top: 20vh;
 }
 
-.Play {
+.InputDiv {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 6ch;
+}
+
+.Input {
   background-color: black;
   color: white;
   border: none;
+  border-radius: 0.5rem;
   font-size: 1.25rem;
   display: block;
-  margin: auto;
+  margin: 1rem;
   margin-top: 1rem;
   padding: 0.5em;
+}
+
+
+.Input:hover {
+  background-color: #222;
+}
+
+.Input:active {
+  background-color: #333;
+  outline: none;
 }
 
 .quarter {

@@ -89,8 +89,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       playing: false,
-      playingSquares: 0
+      playingSquares: -1,
+      value: "120"
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.startInterval = this.startInterval.bind(this)
+    this.endInterval = this.endInterval.bind(this);
   }
 
   tick() {
@@ -98,15 +103,26 @@ class App extends React.Component {
     this.setState({playingSquares: next});
   }
 
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  startInterval() {
+    this.tick();
+    this.timerId = setTimeout(this.startInterval, Math.min(500,  15000/this.state.value))
+  }
+
+  endInterval() {
+    clearTimeout(this.timerId)
+  }
+
   handlePlay() {
     if (this.state.playing) {
       clearInterval(this.timerId);
-      this.setState({playing: false, playingSquares: 0});
+      this.setState({playing: false, playingSquares: -1});
     } else {
-      this.timerId = setInterval(
-        () => this.tick(),
-        125
-      )
+      this.startInterval();
       this.setState({playing: true});
     }
   }
@@ -116,6 +132,13 @@ class App extends React.Component {
       <div className="App">
         <Grid playingSquares={this.state.playingSquares} playing={this.state.playing}/>
         <button className="Play" onClick={() => this.handlePlay()}>Play</button>
+          <input
+          className="Input"
+          type="number"
+          value={this.state.value}
+          onChange={this.handleChange}
+          />
+        </div>
       </div>
     );
   }

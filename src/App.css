@@ -29,6 +29,7 @@
 .InputDiv {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 input {
@@ -36,25 +37,51 @@ input {
 }
 
 .Input {
-  background-color: black;
   color: white;
-  border: none;
+  background-color: black;
   border-radius: 0.5rem;
   font-size: 1.25rem;
   display: block;
   margin: 1rem;
   margin-top: 1rem;
-  padding: 0.5em;
+  border: none;
+  padding: 0.25rem;
 }
 
+.ButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  background-color: black;
+  padding: 0 !important;
+}
+
+.Stop {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background-color: white;
+  border: none;
+}
+
+.Play {
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  border-style: solid;
+  padding: 0;
+  border-width: 1rem 0px 1rem 2rem;
+  border-color: black black black white;
+}
 
 .Input:hover {
   background-color: #222;
 }
 
-.Input:active {
-  background-color: #333;
-  outline: none;
+.Input:hover .Play {
+  border-color: #222 #222 #222 white;
 }
 
 .quarter {

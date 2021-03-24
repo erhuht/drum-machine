@@ -1,43 +1,42 @@
 import './App.css';
 import React from 'react';
 
-function Square(props) {
+function Square({audio, playing, state, quarter, onClick}) {
   let status = "off";
-
   
   React.useEffect(() => {
     const playSound = () => {
-      if (props.playing && props.state) {
-        if (props.audio.audio.paused) {
-          props.audio.audio.play();
+      if (playing && state) {
+        if (audio.audio.paused) {
+          audio.audio.play();
         } else {
-          props.audio.audio.currentTime = 0;
+          audio.audio.currentTime = 0;
         }
           
-        if (props.audio.choke) {
-          if (!props.audio.choke.paused) {
-            props.audio.choke.audio.pause();
-            props.audio.choke.audio.currentTime = 0;
+        if (audio.choke) {
+          if (!audio.choke.paused) {
+            audio.choke.audio.pause();
+            audio.choke.audio.currentTime = 0;
           }
         }
       }
     }
     playSound();
-     // eslint-disable-next-line
-  }, [props.playing]);
+    // eslint-disable-next-line
+  }, [playing]);
 
-  if (props.playing) {
+  if (playing) {
     status = "playing";
-  } else if (props.state) {
+  } else if (state) {
     status = "on";
   }
 
-  if (props.quarter) {
+  if (quarter) {
     status += " quarter"
   }
 
   return (
-    <button onClick={props.onClick} className={status + " square"} />
+    <button onClick={onClick} className={status + " square"} />
   )
 }
 
@@ -129,9 +128,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" onKeyDown={(event) => {if (event.key === " ") { this.handlePlay() }}}>
         <Grid playingSquares={this.state.playingSquares} playing={this.state.playing}/>
-        <button className="Play" onClick={() => this.handlePlay()}>Play</button>
+        <div className="InputDiv">
+          <button
+          className={"ButtonContainer Input"}
+          onClick={() => this.handlePlay()}
+          tabIndex={-1}>
+            <div className={(this.state.playing ? " Stop" : " Play")}/>
+          </button>
           <input
           className="Input"
           type="number"

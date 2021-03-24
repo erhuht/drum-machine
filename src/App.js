@@ -22,6 +22,10 @@ function Square(props) {
     status = "on";
   }
 
+  if (props.quarter) {
+    status += " quarter"
+  }
+
   return (
     <button onClick={props.onClick} className={status + " square"} />
   )
@@ -57,6 +61,7 @@ class Grid extends React.Component {
           state={this.state.buttonState[index]}
           onClick={() => this.handleClick(index)}
           audio={this.audio[i]}
+          quarter={index % 4 === 0}
           />);
       }
       instruments.push(<div key={i}>{row}</div>);
@@ -90,7 +95,7 @@ class App extends React.Component {
     } else {
       this.timerId = setInterval(
         () => this.tick(),
-        100
+        125
       )
       this.setState({playing: true});
     }

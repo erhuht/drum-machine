@@ -16,7 +16,6 @@
 
 .square:focus {
   outline: none;
-  filter: brightness(125%);
 }
 
 .Grid {
@@ -38,15 +37,18 @@
   padding: 0.5em;
 }
 
+.quarter {
+  background-color: grey !important;
+}
 
 .on {
-  background-color: red;
+  background-color: #F5002D !important;
 }
 
 .off {
-  background-color: grey;
+  background-color: darkgray;
 }
 
 .playing {
-  background-color: white;
+  background-color: white !important;
 }

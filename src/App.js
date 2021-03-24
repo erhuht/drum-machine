@@ -3,21 +3,31 @@ import React from 'react';
 
 function Square(props) {
   let status = "off";
-  if (props.playing) {
-    status = "playing";
-    if (props.state) {
-      if (props.audio.audio.paused) {
-        props.audio.audio.play();
-      } else {
-        props.audio.audio.currentTime = 0;
-      }
-      
-      if (props.audio.choke) {
-        if (!props.audio.choke.paused) {
-          props.audio.choke.audio.pause();
+
+  
+  React.useEffect(() => {
+    const playSound = () => {
+      if (props.playing && props.state) {
+        if (props.audio.audio.paused) {
+          props.audio.audio.play();
+        } else {
+          props.audio.audio.currentTime = 0;
+        }
+          
+        if (props.audio.choke) {
+          if (!props.audio.choke.paused) {
+            props.audio.choke.audio.pause();
+            props.audio.choke.audio.currentTime = 0;
+          }
         }
       }
     }
+    playSound();
+     // eslint-disable-next-line
+  }, [props.playing]);
+
+  if (props.playing) {
+    status = "playing";
   } else if (props.state) {
     status = "on";
   }

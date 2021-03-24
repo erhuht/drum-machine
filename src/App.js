@@ -6,10 +6,16 @@ function Square(props) {
   if (props.playing) {
     status = "playing";
     if (props.state) {
-      if (props.audio.paused) {
-        props.audio.play();
+      if (props.audio.audio.paused) {
+        props.audio.audio.play();
       } else {
-        props.audio.currentTime = 0;
+        props.audio.audio.currentTime = 0;
+      }
+      
+      if (props.audio.choke) {
+        if (!props.audio.choke.paused) {
+          props.audio.choke.audio.pause();
+        }
       }
     }
   } else if (props.state) {
@@ -28,7 +34,8 @@ class Grid extends React.Component {
     this.state = {
       buttonState: Array(64).fill(false)
     }
-    this.audio = [new Audio("/op-hat.wav"), new Audio("/cl-hat.wav"), new Audio("/snare.wav"), new Audio("/kick.wav")];
+    let hat = {audio: new Audio("/op-hat.wav")}; // There must be a better way to do this
+    this.audio = [hat, {audio: new Audio("/cl-hat.wav"), choke: hat}, {audio: new Audio("/snare.wav")}, {audio: new Audio("/kick.wav")}];
   }
 
   handleClick(index) {

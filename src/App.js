@@ -28,7 +28,7 @@ class Grid extends React.Component {
     this.state = {
       buttonState: Array(64).fill(false)
     }
-    this.audio = new Audio("/kick.wav");
+    this.audio = [new Audio("/op-hat.wav"), new Audio("/cl-hat.wav"), new Audio("/snare.wav"), new Audio("/kick.wav")];
   }
 
   handleClick(index) {
@@ -49,7 +49,7 @@ class Grid extends React.Component {
           key={index}
           state={this.state.buttonState[index]}
           onClick={() => this.handleClick(index)}
-          audio={this.audio}
+          audio={this.audio[i]}
           />);
       }
       instruments.push(<div key={i}>{row}</div>);

@@ -16,7 +16,7 @@
 
 .square:focus {
   outline: none;
-  filter: brightness(110%);
+  filter: brightness(125%);
 }
 
 .Grid {

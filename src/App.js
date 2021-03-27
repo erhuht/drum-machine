@@ -142,9 +142,19 @@ class App extends React.Component {
       <div
         className="App"
         onKeyDown={(event) => {
-          if (event.key === " ") {
-            this.handlePlay();
+          switch (event.key) {
+            case " ":
+              this.handlePlay();
+              break;
+            case "c":
+              this.clearSquares();
+              break;
+            default:
+              break;
           }
+          // if (event.key === " ") {
+          //   this.handlePlay();
+          // }
         }}
       >
         <Grid
@@ -154,7 +164,7 @@ class App extends React.Component {
           buttonState={this.state.buttonState}
         />
         <div className="InputDiv">
-          <button className="Input" onClick={() => this.clearSquares()}>
+          <button className="Input Clear" onClick={() => this.clearSquares()}>
             Clear
           </button>
           <button

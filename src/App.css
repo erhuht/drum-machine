@@ -32,7 +32,8 @@
   align-items: center;
 }
 
-input {
+input,
+.Clear {
   width: 6ch;
 }
 
@@ -89,7 +90,7 @@ input {
 }
 
 .on {
-  background-color: #F5002D !important;
+  background-color: #f5002d !important;
 }
 
 .off {
